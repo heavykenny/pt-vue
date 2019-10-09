@@ -1,5 +1,15 @@
 <template>
   <div class="view">
-    <h1>This is an view page</h1>
+    <ViewHobby></ViewHobby>
   </div>
 </template>
+<script>
+import ViewHobby from "@/components/ViewHobby.vue";
+
+export default {
+  name: "view",
+  components: {
+    ViewHobby
+  }
+};
+</script>

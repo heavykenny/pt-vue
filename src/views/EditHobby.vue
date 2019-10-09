@@ -1,5 +1,15 @@
 <template>
   <div class="edit">
-    <h1>This is an edit page</h1>
+    <EditHobby></EditHobby>
   </div>
 </template>
+<script>
+import EditHobby from "@/components/EditHobby.vue";
+
+export default {
+  name: "edit",
+  components: {
+    EditHobby
+  }
+};
+</script>

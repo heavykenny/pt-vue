@@ -25,14 +25,20 @@ export default new Vuex.Store({
     logout(state) {
       state.status = "";
       state.token = "";
+    },
+    get_user(state, details) {
+      state.status = "success";
+      state.user = details;
     }
   },
   actions: {
     login({ commit }, user) {
+      // let url = "https://glacial-spire-34119.herokuapp.com/api/user-login";
+      let url = "https://localhost/pt-test/public/api/user-login";
       return new Promise((resolve, reject) => {
         commit("auth_request");
         axios({
-          url: "https://glacial-spire-34119.herokuapp.com/api/user-login",
+          url: url,
           data: user,
           method: "POST"
         })
@@ -40,7 +46,6 @@ export default new Vuex.Store({
             const token = resp.data.token;
             const user = resp.data.user;
             localStorage.setItem("token", token);
-            axios.defaults.headers.common["Authorization"] = token;
             commit("auth_success", token, user);
             resolve(resp);
           })
@@ -63,7 +68,6 @@ export default new Vuex.Store({
             const token = resp.data.token;
             const user = resp.data.user;
             localStorage.setItem("token", token);
-            axios.defaults.headers.common["Authorization"] = token;
             commit("auth_success", token, user);
             resolve(resp);
           })
@@ -78,13 +82,13 @@ export default new Vuex.Store({
       return new Promise(resolve => {
         commit("logout");
         localStorage.removeItem("token");
-        delete axios.defaults.headers.common["Authorization"];
         resolve();
       });
     }
   },
   getters: {
     isLoggedIn: state => !!state.token,
-    authStatus: state => state.status
+    authStatus: state => state.status,
+    getUser: state => state.user
   }
 });

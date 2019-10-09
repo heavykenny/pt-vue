@@ -1,7 +1,13 @@
 <template>
   <div id="app">
     <div id="nav">
-      <span v-if="isLoggedIn"> Welcome {{this.name}}| <a @click="logout">Logout</a></span>
+      <router-link :to="{ name: 'create-hobby', params: { userId: 123 }}">Add Hobby | </router-link>
+      <router-link :to="{ name: 'view-hobby', params: { userId: 123 }}">View All Hobby | </router-link>
+      <span v-if="isLoggedIn"><a @click="logout">Logout</a></span
+      >
+      <p v-if="isLoggedIn">
+        Welcome {{ this.user.name }}</p
+      >
     </div>
     <router-view />
   </div>
@@ -29,11 +35,18 @@
 }
 </style>
 <script>
+import axios from "axios";
 export default {
   computed: {
     isLoggedIn: function() {
       return this.$store.getters.isLoggedIn;
     }
+  },
+  data() {
+    return {
+      user: "",
+      token: this.$store.state.token
+    };
   },
   methods: {
     logout: function() {
@@ -51,6 +64,19 @@ export default {
         throw err;
       });
     });
+  },
+  mounted() {
+    // let url = "https://glacial-spire-34119.herokuapp.com/api/get-user-details";
+    let url = "https://localhost/pt-test/public/api/get-user-details";
+    axios
+      .get(url)
+      .then(response => {
+        this.user = response.data.user;
+        localStorage.setItem("user", JSON.stringify(this.user));
+      })
+      .catch(error => {
+        console.log("User details" + error);
+      });
   }
 };
 </script>

@@ -1,5 +1,15 @@
 <template>
   <div class="create">
-    <h1>This is an create page</h1>
+    <CreateHobby></CreateHobby>
   </div>
 </template>
+<script>
+import CreateHobby from "@/components/CreateHobby.vue";
+
+export default {
+  name: "login",
+  components: {
+    CreateHobby
+  }
+};
+</script>

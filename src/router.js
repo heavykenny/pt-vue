@@ -50,7 +50,7 @@ let router = new Router({
     },
     {
       path: "/edit-hobby",
-      name: "edit-hobby",
+      name: "edit-hobby/:id",
       component: EditHobby,
       meta: {
         requiresAuth: true
@@ -91,6 +91,10 @@ router.beforeEach((to, from, next) => {
     next("/login");
   } else {
     next();
+  }
+
+  if (store.getters.isLoggedIn) {
+    return next('/')
   }
 });
 

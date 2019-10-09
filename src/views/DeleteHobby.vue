@@ -1,5 +1,15 @@
 <template>
   <div class="delete">
-    <h1>This is an delete page</h1>
+    <DeleteHobby></DeleteHobby>
   </div>
 </template>
+<script>
+import DeleteHobby from "@/components/DeleteHobby.vue";
+
+export default {
+  name: "delete",
+  components: {
+    DeleteHobby
+  }
+};
+</script>
