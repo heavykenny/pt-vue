@@ -1,5 +1,17 @@
 <template>
   <div class="register">
-    <h1>This is an register page</h1>
+    <Register></Register>
   </div>
 </template>
+
+<script>
+// @ is an alias to /src
+import Register from '@/components/Register.vue'
+
+export default {
+  name: 'register',
+  components: {
+    Register
+  }
+}
+</script>
