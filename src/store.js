@@ -33,8 +33,8 @@ export default new Vuex.Store({
   },
   actions: {
     login({ commit }, user) {
-      // let url = "https://glacial-spire-34119.herokuapp.com/api/user-login";
-      let url = "https://localhost/pt-test/public/api/user-login";
+      let url = "https://glacial-spire-34119.herokuapp.com/api/user-login";
+      // let url = "https://localhost/pt-test/public/api/user-login";
       return new Promise((resolve, reject) => {
         commit("auth_request");
         axios({
