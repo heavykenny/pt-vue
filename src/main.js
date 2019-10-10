@@ -3,8 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Axios from 'axios'
+import BootstrapVue from "bootstrap-vue";
+import "./css/custom.scss"
 
 Vue.config.productionTip = false
+Vue.use(BootstrapVue);
 Vue.prototype.$http = Axios;
 const token = localStorage.getItem('token')
 if (token) {
