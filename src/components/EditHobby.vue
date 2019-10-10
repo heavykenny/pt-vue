@@ -75,7 +75,7 @@ export default {
         this.hobby_content =this.hobby.content;
       })
       .catch(error => {
-        console.log("User details" + error);
+        console.log(error);
       });
   }
 };
