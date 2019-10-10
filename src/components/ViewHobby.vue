@@ -1,13 +1,28 @@
 <template>
   <div class="view">
-    <h1>{{ this.user.name }}'s Hobby</h1>
-    <li v-for="hobby in this.hobbies" v-bind:key="hobby.id">
-      <router-link :to="{ name: 'edit-hobby/:id', params: { id: hobby.id } }">{{
-        hobby.title
-      }}</router-link>
-      <br /><button v-on:click="deleteHobby(hobby.id)">Delete</button>
-      <hr />
-    </li>
+    <h3 class="mt-3">{{ this.user.name }}'s Hobby</h3>
+    <b-list-group>
+       <b-col md="6" offset-md="3">
+      <b-list-group-item
+        v-for="hobby in this.hobbies"
+        v-bind:key="hobby.id"
+        :to="{ name: 'edit-hobby/:id', params: { id: hobby.id } }"
+        >{{ hobby.title }}
+        <div>
+          <br>
+          <b-link :to="'register'"
+            ><b-button
+              v-on:click="deleteHobby(hobby.id)"
+              size="sm"
+              variant="danger"
+              >Delete</b-button
+            ></b-link
+          >
+        </div>
+      </b-list-group-item>
+       </b-col>
+      <div></div>
+    </b-list-group>
   </div>
 </template>
 <script>
@@ -21,8 +36,8 @@ export default {
     };
   },
   mounted() {
-    // let url = "https://glacial-spire-34119.herokuapp.com/api/get-user-details";
-    let url = "https://localhost/pt-test/public/api/get-user-details";
+    let url = "https://glacial-spire-34119.herokuapp.com/api/get-user-details";
+    // let url = "https://localhost/pt-test/public/api/get-user-details";
     axios
       .get(url)
       .then(response => {
@@ -37,8 +52,8 @@ export default {
   methods: {
     deleteHobby: function(id) {
       let hobby_id = id;
-      // let url = "https://glacial-spire-34119.herokuapp.com/api/user/user-delete-hobby";
-      let url = "https://localhost/pt-test/public/api/user/user-delete-hobby";
+      let url = "https://glacial-spire-34119.herokuapp.com/api/user/user-delete-hobby";
+      // let url = "https://localhost/pt-test/public/api/user/user-delete-hobby";
       axios
         .post(url, {
           user_id: this.user.id,
@@ -50,8 +65,8 @@ export default {
         });
     },
     fetchHobby() {
-      // let url = "https://glacial-spire-34119.herokuapp.com/api/user/get-user-hobby";
-      let url = "https://localhost/pt-test/public/api/user/get-user-hobby";
+      let url = "https://glacial-spire-34119.herokuapp.com/api/user/get-user-hobby";
+      // let url = "https://localhost/pt-test/public/api/user/get-user-hobby";
       axios
         .get(url, {
           params: {

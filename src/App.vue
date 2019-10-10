@@ -1,14 +1,22 @@
 <template>
   <div id="app">
-    <b-container fluid>
+    <b-container fluid class="mt-3">
       <div id="nav">
-        <router-link v-if="isLoggedIn" :to="{ name: 'create-hobby' }"
-          >Add Hobby |
-        </router-link>
-        <router-link v-if="isLoggedIn" :to="{ name: 'view-hobby' }"
-          >View All Hobby |
-        </router-link>
-        <span v-if="isLoggedIn"><a @click="logout">Logout</a></span>
+        <div v-if="isLoggedIn">
+          <b-link :to="{ name: 'create-hobby' }"
+            ><b-button class="mr-2" variant="primary"
+              >Create Hobby</b-button
+            ></b-link
+          >
+          <b-link :to="{ name: 'view-hobby' }"
+            ><b-button class="mr-2" variant="success"
+              >View Hobby</b-button
+            ></b-link
+          >
+          <b-button class="mr-2" variant="danger" @click="logout"
+            >Logout</b-button
+          >
+        </div>
       </div>
       <router-view />
     </b-container>

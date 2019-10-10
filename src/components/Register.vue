@@ -1,40 +1,62 @@
 <template>
-  <div class="register">
-    <h1>Register</h1>
-    <form @submit.prevent="userRegister">
-      <label for="name">Name</label>
+  <div class="register pt-5 text-center">
+    <b-container fluid>
+      <b-form-group>
+        <h1>Register</h1>
+        <form @submit.prevent="userRegister">
+          <label for="name">Name</label>
+          <div>
+            <b-col md="6" offset-md="3"
+              ><b-form-input id="name" type="text" v-model="name" required />
+            </b-col>
+          </div>
+          <label for="email">Email</label>
+          <div>
+            <b-col md="6" offset-md="3"
+              ><b-form-input id="email" type="email" v-model="email" required />
+            </b-col>
+          </div>
+          <label for="phone">Phone Number</label>
+          <div>
+            <b-col md="6" offset-md="3"
+              ><b-form-input id="phone" type="text" v-model="phone" required />
+            </b-col>
+          </div>
+          <label for="password">Password</label>
+          <div>
+            <b-col md="6" offset-md="3"
+              ><b-form-input
+                id="password"
+                type="password"
+                v-model="password"
+                required
+              />
+            </b-col>
+          </div>
+          <label for="password-confirm">Confirm Password</label>
+          <div>
+            <b-col md="6" offset-md="3"
+              ><b-form-input
+                id="password-confirm"
+                type="password"
+                v-model="password_confirmation"
+                required
+              />
+            </b-col>
+          </div>
+          <br>
+          <div>
+            <b-col md="6" offset-md="3">
+              <b-button type="submit" block variant="info">Register</b-button>
+            </b-col>
+          </div>
+        </form>
+      </b-form-group>
+      <br><br>
       <div>
-        <input id="name" type="text" v-model="name" required />
-      </div>
-
-      <label for="email">Email</label>
-      <div>
-        <input id="email" type="email" v-model="email" required />
-      </div>
-      <label for="phone">Phone Number</label>
-      <div>
-        <input id="phone" type="text" v-model="phone" required />
-      </div>
-
-      <label for="password">Password</label>
-      <div>
-        <input id="password" type="password" v-model="password" required />
-      </div>
-
-      <label for="password-confirm">Confirm Password</label>
-      <div>
-        <input
-          id="password-confirm"
-          type="password"
-          v-model="password_confirmation"
-          required
-        />
-      </div>
-
-      <div>
-        <button type="submit">Register</button>
-      </div>
-    </form>
+        <b-link :to="'login'"><b-button>Login</b-button></b-link>
+      </div></b-container
+    >
   </div>
 </template>
 <script>
@@ -56,7 +78,7 @@ export default {
         email: this.email,
         phone: this.phone,
         password: this.password,
-        password_confirmation: this.password_confirmation,
+        password_confirmation: this.password_confirmation
       };
       this.$store
         .dispatch("register", data)

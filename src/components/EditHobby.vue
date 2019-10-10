@@ -1,30 +1,38 @@
 <template>
   <div class="edit">
     <form class="edit" @submit.prevent="editHobby">
-      <h1>Edit Hobby</h1>
-      <label for="title">{{ this.hobby.title }}</label>
+      <h3 class="mt-3">Edit Hobby</h3>
+      <label for="title">Title: {{ this.hobby.title }}</label>
       <div>
-        <input
-          required
-          v-model="hobby_title"
-          type="text"
-          placeholder="Hobby Title"
-        />
+        <b-row>
+          <b-col md="6" offset-md="3">
+            <b-form-input
+              required
+              v-model="hobby_title"
+              type="text"
+              placeholder="Hobby Title"
+            /> </b-col
+        ></b-row>
       </div>
-
+      <br />
       <label for="content">Hobby Content</label>
       <div>
-        <textarea
-          required
-          id="hobby_content"
-          v-model="hobby_content"
-          cols="30"
-          rows="10"
-        ></textarea>
+        <b-row>
+          <b-col md="6" offset-md="3">
+            <b-form-textarea
+              required
+              id="hobby_content"
+              v-model="hobby_content"
+              cols="30"
+              rows="10"
+            ></b-form-textarea></b-col
+        ></b-row>
       </div>
-
+      <br />
       <div>
-        <button type="submit">Update</button>
+        <b-col md="6" offset-md="3">
+          <b-button type="submit" block variant="info">Update</b-button>
+        </b-col>
       </div>
     </form>
   </div>
@@ -45,8 +53,8 @@ export default {
     editHobby: function() {
       let hobby_title = this.hobby_title;
       let hobby_content = this.hobby_content;
-      // let url = "https://glacial-spire-34119.herokuapp.com/api/user/user-edit-hobby";
-      let url = "https://localhost/pt-test/public/api/user/user-edit-hobby";
+      let url = "https://glacial-spire-34119.herokuapp.com/api/user/user-edit-hobby";
+      // let url = "https://localhost/pt-test/public/api/user/user-edit-hobby";
       axios
         .post(url, {
           user_id: this.user.id,
@@ -66,13 +74,13 @@ export default {
     axios
       .get(url, {
         params: {
-          hobby_id: this.$route.params.id,
+          hobby_id: this.$route.params.id
         }
       })
       .then(response => {
         this.hobby = response.data.hobby;
-        this.hobby_title =this.hobby.title;
-        this.hobby_content =this.hobby.content;
+        this.hobby_title = this.hobby.title;
+        this.hobby_content = this.hobby.content;
       })
       .catch(error => {
         console.log(error);

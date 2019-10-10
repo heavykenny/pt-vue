@@ -6,7 +6,6 @@ import Register from "./views/Register.vue";
 import CreateHobby from "./views/CreateHobby.vue";
 import EditHobby from "./views/EditHobby.vue";
 import ViewHobby from "./views/ViewHobby.vue";
-import DeleteHobby from "./views/DeleteHobby.vue";
 import NotFound from "./views/NotFound.vue";
 
 Vue.use(Router);
@@ -41,14 +40,6 @@ let router = new Router({
       path: "/edit-hobby",
       name: "edit-hobby/:id",
       component: EditHobby,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: "/delete-hobby",
-      name: "delete-hobby",
-      component: DeleteHobby,
       meta: {
         requiresAuth: true
       }
