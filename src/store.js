@@ -61,8 +61,10 @@ export default new Vuex.Store({
     register({ commit }, user) {
       return new Promise((resolve, reject) => {
         commit("auth_request");
+        let url = "https://glacial-spire-34119.herokuapp.com/api/user-register";
+        // let url = "https://localhost/pt-test/public/api/user-register";
         axios({
-          url: "https://glacial-spire-34119.herokuapp.com/api/user-register",
+          url,
           data: user,
           method: "POST"
         })
@@ -70,6 +72,7 @@ export default new Vuex.Store({
             const token = resp.data.token;
             const user = resp.data.user;
             localStorage.setItem("token", token);
+            localStorage.setItem("user", user);
             commit("auth_success", token, user);
             resolve(resp);
           })
