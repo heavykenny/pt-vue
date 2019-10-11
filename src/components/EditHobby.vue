@@ -69,7 +69,7 @@ export default {
     }
   },
   created() {
-    let url = "https://glacial-spire-34119.herokuapp.com/api/get-hobby-details";
+    let url = "https://glacial-spire-34119.herokuapp.com/api/user/get-hobby-details";
     // let url = "https://localhost/pt-test/public/api/user/get-hobby-details";
     axios
       .get(url, {
