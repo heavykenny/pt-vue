@@ -2,25 +2,25 @@
   <div class="view">
     <h3 class="mt-3">{{ this.user.name }}'s Hobby</h3>
     <b-list-group>
-       <b-col md="6" offset-md="3">
-      <b-list-group-item
-        v-for="hobby in this.hobbies"
-        v-bind:key="hobby.id"
-        :to="{ name: 'edit-hobby/:id', params: { id: hobby.id } }"
-        >{{ hobby.title }}
-        <div>
-          <br>
-          <b-link :to="'register'"
-            ><b-button
-              v-on:click="deleteHobby(hobby.id)"
-              size="sm"
-              variant="danger"
-              >Delete</b-button
-            ></b-link
-          >
-        </div>
-      </b-list-group-item>
-       </b-col>
+      <b-col md="6" offset-md="3">
+        <b-list-group-item
+          v-for="hobby in this.hobbies"
+          v-bind:key="hobby.id"
+          :to="{ name: 'edit-hobby/:id', params: { id: hobby.id } }"
+          >{{ hobby.title }}
+          <div>
+            <br />
+            <b-link
+              ><b-button
+                v-on:click="deleteHobby(hobby.id)"
+                size="sm"
+                variant="danger"
+                >Delete</b-button
+              ></b-link
+            >
+          </div>
+        </b-list-group-item>
+      </b-col>
       <div></div>
     </b-list-group>
   </div>
@@ -35,14 +35,14 @@ export default {
       token: this.$store.state.token
     };
   },
-  mounted() {
+  created() {
     let url = "https://glacial-spire-34119.herokuapp.com/api/get-user-details";
     // let url = "https://localhost/pt-test/public/api/get-user-details";
     axios
       .get(url)
       .then(response => {
-        this.user = response.data.user;
-        localStorage.setItem("user", JSON.stringify(this.user));
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        this.user = JSON.parse(localStorage.getItem("user"));
         this.fetchHobby();
       })
       .catch(error => {
@@ -75,7 +75,6 @@ export default {
         })
         .then(response => {
           this.hobbies = response.data.hobby;
-          this.user = JSON.parse(localStorage.getItem("user"));
         })
         .catch(error => {
           console.log(error);
