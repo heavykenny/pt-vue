@@ -1,5 +1,7 @@
 # patricia-vuejs
 
+hosted on heroku https://vast-journey-94936.herokuapp.com
+
 ## Project setup
 ```
 yarn install
