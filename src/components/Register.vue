@@ -19,7 +19,7 @@
           <label for="phone">Phone Number</label>
           <div>
             <b-col md="6" offset-md="3"
-              ><b-form-input id="phone" type="text" v-model="phone" required />
+              ><b-form-input id="phone" type="text" v-model="phone" required placeholder="+2348169260416"/>
             </b-col>
           </div>
           <label for="password">Password</label>
